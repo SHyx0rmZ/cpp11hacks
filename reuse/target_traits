@@ -29,27 +29,27 @@ namespace cpp11hacks
     ;
 
     template <target_system_name N = target_system>
-    struct target_is_windows : std::conditional<target_system_windows == N, std::true_type, std::false_type>::type
+    struct target_system_is_windows : std::conditional<target_system_windows == N, std::true_type, std::false_type>::type
     {
     };
 
     template <target_system_name N = target_system>
-    struct target_is_linux : std::conditional<target_system_linux == N, std::true_type, std::false_type>::type
+    struct target_system_is_linux : std::conditional<target_system_linux == N, std::true_type, std::false_type>::type
     {
     };
 
     template <target_system_name N = target_system>
-    struct target_is_mac : std::conditional<target_system_mac == N, std::true_type, std::false_type>::type
+    struct target_system_is_mac : std::conditional<target_system_mac == N, std::true_type, std::false_type>::type
     {
     };
 
     template <target_system_name N = target_system>
-    struct target_is_iphone : std::conditional<target_system_iphone == N, std::true_type, std::false_type>::type
+    struct target_system_is_iphone : std::conditional<target_system_iphone == N, std::true_type, std::false_type>::type
     {
     };
 
     template <target_system_name N = target_system>
-    struct target_is_unknown : std::conditional<target_system_unknown == N, std::true_type, std::false_type>::type
+    struct target_system_is_unknown : std::conditional<target_system_unknown == N, std::true_type, std::false_type>::type
     {
     };
 }
