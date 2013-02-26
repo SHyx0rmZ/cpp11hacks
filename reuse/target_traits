@@ -158,36 +158,4 @@ namespace cpp11hacks
     };
 }
 
-#if !defined(RK_EXPORT)
-#if defined(RK_COMPILER_MSC)
-#define RK_EXPORT __declspec(dllexport)
-#elif defined(RK_COMPILER_GCC) && defined(RK_SYSTEM_WINDOWS)
-#define RK_EXPORT __attribute__((dllexport))
-#elif defined(RK_COMPILER_GCC)
-#define RK_EXPORT
-#endif
-#endif
-
-#if !defined(RK_IMPORT)
-#if defined(RK_COMPILER_MSC)
-#define RK_IMPORT __declspec(dllimport)
-#elif defined(RK_COMPILER_GCC) && defined(RK_SYSTEM_WINDOWS)
-#define RK_IMPORT __attribute__((dllimport))
-#elif defined(RK_COMPILER_GCC)
-#define RK_IMPORT
-#endif
-#endif
-
-#if !defined(RK_LIBRARY)
-#if defined(_WINDLL) || defined(DLL_EXPORT)
-#define RK_LIBRARY RK_EXPORT
-#else
-#define RK_LIBRARY RK_IMPORT
-#endif
-#endif
-
-#if defined(_DEBUG)
-#define RK_DEBUG
-#endif
-
 #endif
