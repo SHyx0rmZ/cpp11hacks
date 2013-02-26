@@ -115,15 +115,48 @@ namespace cpp11hacks
     {
     };
 
-}
+    enum target_cpu_name
+    {
+        target_cpu_ia32,
+        target_cpu_amd64,
+        target_cpu_unknown
+    };
 
-#if (defined(_M_X64) || defined(__amd64__)) && !defined(RK_CPU_X64)
-#define RK_CPU_X64
-#elif (defined(_M_IX86) || defined(__i386__)) && !defined(RK_CPU_X86)
-#define RK_CPU_X86
+    const target_cpu_name target_cpu =
+#if defined(_M_X64) || defined(__amd64__)
+    target_cpu_amd64
+#elif defined(_M_IX86) || defined(__i386__)
+    target_cpu_ia32
 #else
-#error Unrecognized CPU
+    target_cpu_unknown
 #endif
+    ;
+
+    template <target_cpu_name N = target_cpu>
+    struct target_cpu_is_unknown : std::true_type
+    {
+    };
+
+    template <>
+    struct target_cpu_is_unknown<target_cpu_ia32> : std::false_type
+    {
+    };
+
+    template <target_cpu_name N = target_cpu>
+    struct target_cpu_is_ia32 : std::conditional<target_cpu_ia32 == N, std::true_type, std::false_type>::type
+    {
+    };
+
+    template <>
+    struct target_cpu_is_unknown<target_cpu_amd64> : std::false_type
+    {
+    };
+
+    template <target_cpu_name N = target_cpu>
+    struct target_cpu_is_amd64 : std::conditional<target_cpu_amd64 == N, std::true_type, std::false_type>::type
+    {
+    };
+}
 
 #if !defined(RK_EXPORT)
 #if defined(RK_COMPILER_MSC)
