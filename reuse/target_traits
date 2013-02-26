@@ -1,25 +1,43 @@
 #ifndef _TARGET_TRAITS_HPP_
 #define _TARGET_TRAITS_HPP_
 
-#if (defined(_WIN32) || defined(_WIN64) || defined(__CYGWIN32__)) && !defined(RK_SYSTEM_WINDOWS)
-#define RK_SYSTEM_WINDOWS
-#define RK_NAMESPACE_SYSTEM Windows
-#elif defined(__linux__) && !defined(RK_SYSTEM_LINUX)
-#define RK_SYSTEM_LINUX
-#define RK_NAMESPACE_SYSTEM Linux
-#elif defined(TARGET_OS_MAC) && !defined(RK_SYSTEM_MAC)
-#define RK_SYSTEM_MAC
-#define RK_NAMESPACE_SYSTEM Mac
-#elif (defined(TARGET_OS_IPHONE) || defined(TARGET_IPHONE_SIMULATOR)) && !defined(RK_SYSTEM_IPHONE)
-#define RK_SYSTEM_IPHONE
-#define RK_NAMESPACE_SYSTEM Iphone
-#else
-#error Unrecognized system
-#endif
+#include <type_traits>
 
-#if !defined(RK_NAMESPACE_SYSTEM)
-#error Unrecognized system namespace
+namespace cpp11hacks
+{
+    enum target_system_name
+    {
+        target_system_windows,
+        target_system_linux,
+        target_system_mac,
+        target_system_iphone,
+        target_system_unknown
+    };
+
+    const target_system_name target_system =
+#if defined(_WIN32) || defined(_WIN64) || defined(__CYGWIN32__)
+    target_system_windows
+#elif defined(__linux__)
+    target_system_linux
+#elif defined(TARGET_OS_MAC)
+    target_system_mac
+#elif defined(TARGET_OS_IPHONE) || defined(TARGET_IPHONE_SIMULATOR)
+    target_system_iphone
+#else
+    target_system_unknown
 #endif
+    ;
+
+    template <target_system_name N = target_system>
+    struct target_is_windows : std::conditional<target_system_windows == N, std::true_type, std::false_type>
+    {
+    };
+
+    template <target_system_name N = target_system>
+    struct target_is_linux : std::conditional<target_system_linux == N, std::true_type, std::false_type>
+    {
+    };
+}
 
 #if defined(__GNUC__) && !defined(RK_COMPILER_GCC)
 #define RK_COMPILER_GCC
