@@ -54,4 +54,7 @@ target_system_is_windows<target_system_linux>::value
 
 // use without parameter to use automatically determined target values
 target_system_is_linux<>::value
+
+// also returns true
+target_system_is_unknown<static_cast<target_system_name>(42)>::value
 ```
