@@ -1,9 +1,9 @@
-#ifndef _CPP11HACKS_LOCKFREE_QUEUE_HPP_
-#define _CPP11HACKS_LOCKFREE_QUEUE_HPP_
+#ifndef _LIBSHY_LOCKFREE_QUEUE_HPP_
+#define _LIBSHY_LOCKFREE_QUEUE_HPP_
 
 #include <atomic>
 
-namespace cpp11hacks
+namespace shy
 {
     template <typename T>
     struct LockfreeQueue

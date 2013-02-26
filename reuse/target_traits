@@ -1,9 +1,9 @@
-#ifndef _TARGET_TRAITS_HPP_
-#define _TARGET_TRAITS_HPP_
+#ifndef _LIBSHY_TARGET_TRAITS_HPP_
+#define _LIBSHY_TARGET_TRAITS_HPP_
 
 #include <type_traits>
 
-namespace cpp11hacks
+namespace shy
 {
     enum target_system_name
     {

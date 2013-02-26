@@ -1,6 +1,6 @@
 #include "reference.hpp"
 
-namespace cpp11hacks
+namespace shy
 {
     std::map<void *, unsigned int> *references = nullptr;
 }

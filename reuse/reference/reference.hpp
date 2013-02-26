@@ -1,5 +1,5 @@
-#ifndef _CPP11HACKS_REFERENCE_HPP_
-#define _CPP11HACKS_REFERENCE_HPP_
+#ifndef _LIBSHY_REFERENCE_HPP_
+#define _LIBSHY_REFERENCE_HPP_
 
 #include <cstddef>
 #include <map>
@@ -9,7 +9,7 @@
 #pragma warning(disable: 4251)
 #endif
 
-namespace cpp11hacks
+namespace shy
 {
     extern std::map<void *, unsigned int> *references;
 
