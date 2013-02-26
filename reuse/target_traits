@@ -91,7 +91,22 @@ namespace cpp11hacks
     ;
 
     template <target_compiler_name N = target_compiler>
+    struct target_compiler_is_unknown : std::true_type
+    {
+    };
+
+    template <>
+    struct target_compiler_is_unknown<target_compiler_gcc> : std::false_type
+    {
+    };
+
+    template <target_compiler_name N = target_compiler>
     struct target_compiler_is_gcc : std::conditional<target_compiler_gcc == N, std::true_type, std::false_type>::type
+    {
+    };
+
+    template <>
+    struct target_compiler_is_unknown<target_compiler_msc> : std::false_type
     {
     };
 
@@ -100,10 +115,6 @@ namespace cpp11hacks
     {
     };
 
-    template <target_compiler_name N = target_compiler>
-    struct target_compiler_is_unknown : std::conditional<target_compiler_unknown == N, std::true_type, std::false_type>::type
-    {
-    };
 }
 
 #if (defined(_M_X64) || defined(__amd64__)) && !defined(RK_CPU_X64)
