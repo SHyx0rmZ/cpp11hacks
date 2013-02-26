@@ -1,6 +1,6 @@
 target_traits.hpp
 =================
-This header provides information on the build target. The interface is based on <type_traits>
+This header provides information on the build target. The interface is based on `<type_traits>`
 
 Enums
 -----
@@ -44,7 +44,7 @@ target_cpu_is_amd64<T>;
 target_cpu_is_unknown<T>;
 ```
 
-Use them like <type_traits>
+Use them like `<type_traits>`
 ```
 // returns true
 target_system_is_linux<target_system_linux>::value
