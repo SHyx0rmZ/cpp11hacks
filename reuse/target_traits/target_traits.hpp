@@ -17,14 +17,19 @@ namespace shy
     const target_system_name target_system =
 #if defined(_WIN32) || defined(_WIN64) || defined(__CYGWIN32__)
     target_system_windows
+    #define SHY_TARGET_SYSTEM_WINDOWS 1
 #elif defined(__linux__)
     target_system_linux
+    #define SHY_TARGET_SYSTEM_LINUX 1
 #elif defined(TARGET_OS_MAC)
     target_system_mac
+    #define SHY_TARGET_SYSTEM_MAC 1
 #elif defined(TARGET_OS_IPHONE) || defined(TARGET_IPHONE_SIMULATOR)
     target_system_iphone
+    #define SHY_TARGET_SYSTEM_IPHONE 1
 #else
     target_system_unknown
+    #define SHY_TARGET_SYSTEM_UNKNOWN 1
 #endif
     ;
 
@@ -83,10 +88,13 @@ namespace shy
     const target_compiler_name target_compiler =
 #if defined(__GNUC__)
     target_compiler_gcc
+    #define SHY_TARGET_COMPILER_GCC 1
 #elif defined(_MSC_VER)
     target_compiler_msc
+    #define SHY_TARGET_COMPILER_MSC 1
 #else
     target_compiler_unknown
+    #define SHY_TARGET_COMPILER_UNKNOWN 1
 #endif
     ;
 
@@ -125,10 +133,13 @@ namespace shy
     const target_cpu_name target_cpu =
 #if defined(_M_X64) || defined(__amd64__)
     target_cpu_amd64
+    #define SHY_TARGET_CPU_AMD64 1
 #elif defined(_M_IX86) || defined(__i386__)
     target_cpu_ia32
+    #define SHY_TARGET_CPU_IA32 1
 #else
     target_cpu_unknown
+    #define SHY_TARGET_CPU_UNKNOWN 1
 #endif
     ;
 
